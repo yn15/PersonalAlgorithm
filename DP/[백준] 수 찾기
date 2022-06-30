@@ -1,0 +1,71 @@
+**[[백준] 수 찾기](https://www.acmicpc.net/problem/1920)**
+
+- N배열을 정렬
+- M 수들을 N배열에서 이분탐색으로 탐색
+- O(M*logN)
+---
+
+
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.util.*;
+
+public class Main{
+    static int[] n_arr;
+    static int N;
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        
+        StringTokenizer st;
+        
+        N = Integer.parseInt(br.readLine());
+        n_arr = new int[N];
+
+        st = new StringTokenizer(br.readLine());
+        for(int i = 0; i<N; i++) n_arr[i] = Integer.parseInt(st.nextToken());
+        Arrays.sort(n_arr);
+        
+        int M = Integer.parseInt(br.readLine());
+        
+        StringBuilder sb = new StringBuilder();
+        
+        int buff = 0;
+        st = new StringTokenizer(br.readLine());
+        for(int i = 0; i<M; i++){
+            buff = Integer.parseInt(st.nextToken());
+            sb.append(binary(buff)+"\n");
+        }
+        
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+    
+    public static int binary(int a){
+        int l = 0;
+        int r = N-1;
+        int m;
+        while(l<=r){
+            m = (l+r)/2;
+            
+            if(a == n_arr[m]) {
+			    return 1;
+    		}
+    		if(a < n_arr[m]) {
+    			r = m-1; 
+    		}else{
+    			l = m+1;
+    		}
+        }
+        return 0;
+    }
+}
+
+
+```
