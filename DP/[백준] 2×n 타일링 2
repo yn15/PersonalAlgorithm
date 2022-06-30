@@ -1,0 +1,42 @@
+**[[백준] 2×n 타일링 2](https://www.acmicpc.net/problem/11727)**
+
+**n=3일 때**
+- n=2의 타일에 2*1의 붙은 형태가 옴
+- n=1에 가로 두개나 2*2타일이 붙어서 
+---
+
+
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        int N = Integer.parseInt(st.nextToken());
+        
+        int[] dp = new int[1001];
+        dp[1] = 1;
+        dp[2] = 3;
+        
+        for(int i = 3; i<=N; i++){
+            dp[i] = (dp[i-1] + 2*dp[i-2])%10007;
+        }
+        
+        bw.write(dp[N]+"");
+        bw.flush();
+        bw.close();
+
+    }
+}
+
+```
