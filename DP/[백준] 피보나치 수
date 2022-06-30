@@ -1,0 +1,42 @@
+**[[백준] 피보나치 수](https://www.acmicpc.net/problem/2747)**
+
+- 0번은 0
+- 1번은 1 로 초기화 하고 시
+- O(N)
+---
+
+
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        int N = Integer.parseInt(st.nextToken());
+        
+        int[] dp = new int[N+1];
+        dp[0] = 0;
+        dp[1] = 1;
+        
+        for(int i = 2; i<=N; i++){
+            dp[i] = dp[i-1] + dp[i-2];
+        }
+        
+        bw.write(dp[N]+"");
+        bw.flush();
+        bw.close();
+
+    }
+}
+
+```
